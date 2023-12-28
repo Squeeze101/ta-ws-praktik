@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 //Panggil routes
-var routes = require('./routes/paket')
+var routes = require('./routes/route')
 
 routes(app)
 
