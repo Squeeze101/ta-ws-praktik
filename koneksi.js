@@ -1,19 +1,10 @@
-// import module mysql
-var mysql = require('mysql')
+// koneksi.js
+const { Sequelize } = require('sequelize');
 
-// konfigurasi username dan password database
-const conn = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'dbtopup'
-});
- 
-// respon jika berhasil terkoneksi
-conn.connect((err)=>{
-    if(err) throw err;
-    console.log('MySQL sudah terkoneksi!')
+// Konfigurasi koneksi ke database
+const sequelize = new Sequelize('dbtopup', 'root', '', {
+  host: 'localhost',
+  dialect: 'mysql', // Sesuaikan dengan jenis database yang digunakan
 });
 
-
-module.exports = conn;
+module.exports = sequelize;
