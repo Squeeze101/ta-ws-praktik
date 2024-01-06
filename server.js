@@ -9,6 +9,8 @@ const pembeli = require('./src/models/PembeliModel');
 const paket = require('./src/models/PaketModel');
 const pulsa = require('./src/models/PulsaModel');
 const transaksi = require('./src/models/TransaksiModel');
+const admin = require('./src/models/AdminModel');
+
 
 // Panggil routes
 const routespembeli = require('./src/routes/routePembeli');
@@ -22,6 +24,9 @@ routespulsa(app);
 
 const routetransaksi = require('./src/routes/routeTransaksi');
 routetransaksi(app);
+
+const routeadmin = require('./src/routes/routeAdmin');
+routeadmin(app);
 
 
 // Sinkronisasi model dengan database
@@ -56,6 +61,15 @@ pembeli.sync({ force: false })
   .catch((err) => {
     console.error('Gagal membuat tabel Transaksi:', err);
   });
+
+  admin.sync({ force: false })
+  .then(() => {
+    console.log('Tabel Admin telah dibuat');
+  })
+  .catch((err) => {
+    console.error('Gagal membuat tabel Admin:', err);
+  });
+
 
 // Menjalankan server pada port 3000
 app.listen(3000, () => {
